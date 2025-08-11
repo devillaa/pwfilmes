@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             FilmesSeeder::class,
+            AdminSeeder::class,
         ]);
 
         User::factory()->create([
