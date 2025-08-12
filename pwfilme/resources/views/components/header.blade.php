@@ -1,10 +1,14 @@
 <header>
-    <h1>ToVerde Films</h1>
+    <a href="{{ route('filmes.index') }}">
+        <h1>ToVerde Films</h1>
+    </a>
     <nav>
+        <a href="{{ route('filmes.index') }}">Filmes</a>
 
-        @if(auth()->check())
-            @if(auth()->user()->isAdmin)
+        @if (auth()->check())
+            @if (auth()->user()->isAdmin)
                 <a href="{{ route('filmes.create') }}">Cadastrar Filme</a>
+                <a href="{{ route('categorias.index') }}">Categorias</a>
             @endif
 
             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a>

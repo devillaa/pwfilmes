@@ -17,4 +17,8 @@ class Filme extends Model
         'imagem',
         'trailer',
     ];
+
+    public function categoria () {
+        return $this->belongsTo(Categoria::class);
+    }
 }
