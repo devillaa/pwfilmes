@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class FilmesController extends Controller
 {
+    public function home(){
+        return view('home');
+    }
+
     // Listar todos os filmes
     public function index()
     {

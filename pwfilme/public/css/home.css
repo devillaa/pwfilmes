@@ -1,0 +1,93 @@
+/* Fundo com imagem de cinema */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: url('https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=1600&q=80') no-repeat center center fixed;
+    background-size: cover;
+    color: #d8d8d8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(20, 24, 28, 0.85);
+    z-index: 0;
+}
+
+.container {
+    text-align: center;
+    z-index: 1;
+    padding: 40px;
+    max-width: 700px;
+}
+
+
+h1 {
+    font-size: 3.5rem;
+    color: #00c030;
+    margin-bottom: 15px;
+}
+
+
+.subtitle {
+    font-size: 1.3rem;
+    color: #b0b0b0;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.btn {
+    padding: 15px 35px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+
+.login-btn {
+    background-color: #00c030;
+    color: #fff;
+}
+
+.login-btn:hover {
+    background-color: #00a828;
+}
+
+
+.register-btn {
+    background-color: transparent;
+    border: 2px solid #00c030;
+    color: #00c030;
+}
+
+.register-btn:hover {
+    background-color: #00c030;
+    color: #fff;
+}
+
+footer {
+    font-size: 0.9rem;
+    color: #888;
+}

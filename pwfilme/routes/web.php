@@ -17,6 +17,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::delete('/filmes/{filme}', [FilmesController::class, 'destroy'])->name('filmes.destroy');
 });
 
+Route::get('/', [FilmesController::class, 'home'])->name('home');
+
 // Autenticação
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');

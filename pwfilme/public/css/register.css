@@ -1,0 +1,118 @@
+body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background: url("https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=1600&q=80")
+        no-repeat center center fixed;
+    background-size: cover;
+    color: #d8d8d8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(20, 24, 28, 0.85);
+    z-index: 0;
+}
+
+.register-box {
+    background-color: rgba(30, 35, 41, 0.95);
+    padding: 30px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+h1 {
+    text-align: center;
+    color: #00c030;
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 1rem;
+    color: #b0b0b0;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #b0b0b0;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #2b323b;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+input:focus {
+    outline: 2px solid #00c030;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #00c030;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background: #00a828;
+}
+
+.link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.link a {
+    color: #00c030;
+    text-decoration: none;
+}
+
+.link a:hover {
+    text-decoration: underline;
+}
+
+.error,
+.success {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.error {
+    background-color: rgba(255, 80, 80, 0.15);
+    color: #ff5050;
+}
+
+.success {
+    background-color: rgba(0, 192, 48, 0.15);
+    color: #00c030;
+}
