@@ -128,3 +128,23 @@ h2 {
     background: #00b846;
     color: #fff;
 }
+
+#btn-destroy {
+    display: block;
+    width: 100%;
+    margin-top: 16px;
+    text-align: center;
+    background: #232a32;
+    color: #e00000;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background 0.18s, color 0.18s;
+    box-sizing: border-box;
+}
+
+#btn-destroy:hover {
+    color: #760101;
+    cursor: pointer;
+}

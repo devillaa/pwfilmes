@@ -17,8 +17,8 @@ return new class extends Migration
             $table->longText('sinopse');
             $table->integer('ano');
             $table->string('categoria');
-            $table->string('imagem');
-            $table->string('trailer');
+            $table->string('imagem')->nullable();
+            $table->string('trailer')->nullable();
             $table->timestamps();
         });
     }

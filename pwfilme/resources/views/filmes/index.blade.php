@@ -29,6 +29,16 @@
                     @if (auth()->check() && auth()->user()->isAdmin)
                         <a href="{{ route('filmes.edit', $filme->id) }}" class="btn-trailer"
                             style="background:#222a32;color:#00e054;margin-top:8px;">Editar</a>
+                    
+                        <form action="{{ route('filmes.destroy', $filme->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit" id="btn-destroy" 
+                            onclick="return confirm('Tem certeza que deseja excluir este filme?')">
+                            Excluir Filme
+                            </button>
+                        </form>
                     @endif
                 </div>
             @endforeach

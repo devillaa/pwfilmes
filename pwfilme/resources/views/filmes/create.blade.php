@@ -38,7 +38,7 @@
                 </div>
 
                 <label for="trailer">Link do Trailer (YouTube)</label>
-                <input type="text" name="trailer" id="trailer" value="{{ old('trailer') }}" required>
+                <input type="text" name="trailer" id="trailer" value="{{ old('trailer') }}">
 
                 <button type="submit" class="btn-trailer">Cadastrar Filme</button>
             </form>

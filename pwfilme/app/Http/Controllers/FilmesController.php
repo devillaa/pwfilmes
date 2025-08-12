@@ -40,7 +40,7 @@ class FilmesController extends Controller
             'sinopse' => 'required|string',
             'ano' => 'required|integer',
             'categoria' => 'required|string|max:255',
-            'trailer' => 'required|string|max:255',
+            'trailer' => 'nullable|string|max:255',
             'imagem_arquivo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'imagem_url' => 'nullable|url|max:255',
         ]);
@@ -79,7 +79,7 @@ class FilmesController extends Controller
             'sinopse' => 'required|string',
             'ano' => 'required|integer',
             'categoria' => 'required|string|max:255',
-            'trailer' => 'required|string|max:255',
+            'trailer' => 'nullable|string|max:255',
             'imagem_arquivo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'imagem_url' => 'nullable|url|max:255',
         ]);
