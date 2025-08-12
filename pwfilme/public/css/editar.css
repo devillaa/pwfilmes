@@ -43,6 +43,11 @@ main {
     margin: 0 auto;
 }
 
+main > div {
+    max-width: 480px;
+    margin: 0 auto;
+}
+
 h2 {
     text-align: center;
     color: #fff;
@@ -77,16 +82,11 @@ h2 {
 
 .filme-card img {
     width: 100%;
-    max-width: 220px;
     height: 320px;
     object-fit: cover;
-    background: none;
     border-radius: 7px;
     margin-bottom: 14px;
     box-shadow: 0 2px 8px #0004;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .filme-card h3 {
@@ -122,9 +122,108 @@ h2 {
     font-size: 1rem;
     transition: background 0.18s, color 0.18s;
     margin-top: 8px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
 }
 
 .btn-trailer:hover {
     background: #00b846;
     color: #fff;
+}
+
+form {
+    background: #232a32;
+    padding: 32px 24px;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px #0005;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+form label {
+    color: #00e054;
+    font-weight: 500;
+    margin-bottom: 4px;
+    margin-top: 8px;
+    text-align: left;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="file"],
+form input[type="url"],
+form textarea {
+    width: 100%;
+    background: #181818;
+    color: #d8d8d8;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 1em;
+    margin-bottom: 14px;
+    box-sizing: border-box;
+}
+
+form input[type="file"] {
+    padding: 6px 0;
+    background: none;
+    color: #b0b0b0;
+}
+
+form textarea {
+    resize: vertical;
+    min-height: 80px;
+    font-family: inherit;
+}
+
+form .btn-trailer {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+a.btn-trailer {
+    display: block;
+    width: 100%;
+    margin-top: 16px;
+    text-align: center;
+    background: #232a32;
+    color: #00e054;
+    border: 2px solid #00e054;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background 0.18s, color 0.18s;
+    box-sizing: border-box;
+}
+
+a.btn-trailer:hover {
+    background: #00e054;
+    color: #181818;
+}
+
+form .imagem-atual {
+    margin-top: 10px;
+    color: #b0b0b0;
+    font-size: 0.95em;
+    text-align: center;
+    width: 100%;
+    overflow-x: auto;
+}
+
+form .imagem-atual img {
+    max-width: 90%;
+    width: auto;
+    height: auto;
+    max-height: 180px;
+    border-radius: 6px;
+    margin-top: 4px;
+    box-shadow: 0 2px 8px #0004;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
 }

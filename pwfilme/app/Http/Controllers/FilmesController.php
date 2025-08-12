@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Filme;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FilmesController extends Controller
 {
-    public function home(){
+    public function home()
+    {
         return view('home');
     }
 
@@ -38,11 +40,27 @@ class FilmesController extends Controller
             'sinopse' => 'required|string',
             'ano' => 'required|integer',
             'categoria' => 'required|string|max:255',
-            'imagem' => 'required|string|max:255',
             'trailer' => 'required|string|max:255',
+            'imagem_arquivo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'imagem_url' => 'nullable|url|max:255',
         ]);
 
-        Filme::create($request->all());
+        // Lógica para imagem
+        $imagem = null;
+        if ($request->hasFile('imagem_arquivo')) {
+            $imagem = $request->file('imagem_arquivo')->store('filmes', 'public');
+        } elseif ($request->filled('imagem_url')) {
+            $imagem = $request->imagem_url;
+        }
+
+        Filme::create([
+            'nome' => $request->nome,
+            'sinopse' => $request->sinopse,
+            'ano' => $request->ano,
+            'categoria' => $request->categoria,
+            'imagem' => $imagem,
+            'trailer' => $request->trailer,
+        ]);
 
         return redirect()->route('filmes.index')->with('success', 'Filme cadastrado com sucesso!');
     }
@@ -61,11 +79,35 @@ class FilmesController extends Controller
             'sinopse' => 'required|string',
             'ano' => 'required|integer',
             'categoria' => 'required|string|max:255',
-            'imagem' => 'required|string|max:255',
             'trailer' => 'required|string|max:255',
+            'imagem_arquivo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'imagem_url' => 'nullable|url|max:255',
         ]);
 
-        $filme->update($request->all());
+        // Lógica para imagem
+        $imagem = $filme->imagem;
+        if ($request->hasFile('imagem_arquivo')) {
+            // Remove imagem antiga se for arquivo local
+            if ($imagem && !filter_var($imagem, FILTER_VALIDATE_URL)) {
+                Storage::disk('public')->delete($imagem);
+            }
+            $imagem = $request->file('imagem_arquivo')->store('filmes', 'public');
+        } elseif ($request->filled('imagem_url')) {
+            // Remove imagem antiga se for arquivo local
+            if ($imagem && !filter_var($imagem, FILTER_VALIDATE_URL)) {
+                Storage::disk('public')->delete($imagem);
+            }
+            $imagem = $request->imagem_url;
+        }
+
+        $filme->update([
+            'nome' => $request->nome,
+            'sinopse' => $request->sinopse,
+            'ano' => $request->ano,
+            'categoria' => $request->categoria,
+            'imagem' => $imagem,
+            'trailer' => $request->trailer,
+        ]);
 
         return redirect()->route('filmes.index')->with('success', 'Filme atualizado com sucesso!');
     }
@@ -73,6 +115,10 @@ class FilmesController extends Controller
     // Excluir filme (admin)
     public function destroy(Filme $filme)
     {
+        // Remove imagem do storage se for arquivo local
+        if ($filme->imagem && !filter_var($filme->imagem, FILTER_VALIDATE_URL)) {
+            Storage::disk('public')->delete($filme->imagem);
+        }
         $filme->delete();
         return redirect()->route('filmes.index')->with('success', 'Filme excluído com sucesso!');
     }
