@@ -14,10 +14,25 @@ class FilmesController extends Controller
     }
 
     // Listar todos os filmes
-    public function index()
+    public function index(Request $request)
     {
-        $filmes = Filme::all();
-        return view('filmes.index', compact('filmes'));
+
+        $query = Filme::query();
+
+        if ($request->filled('ano')) {
+            $query->where('ano', $request->ano);
+        }
+    
+        if ($request->filled('categoria')) {
+            $query->where('categoria', $request->categoria);
+        }
+    
+    
+        $filmes = $query->get();
+    
+        $categorias = Filme::select('categoria')->distinct()->orderBy('categoria')->pluck('categoria');
+    
+        return view('filmes.index', compact('filmes', 'categorias'));
     }
 
     // Visualizar detalhes de um filme (usuário)

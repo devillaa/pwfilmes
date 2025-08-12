@@ -11,6 +11,31 @@
 <body>
     <x-header />
 
+    <form method="GET" action="{{ route('filmes.index') }}" class="filtros-container">
+        <div>
+            <label for="ano">Ano</label>
+            <input type="number" name="ano" id="ano" placeholder="Digite o ano" value="{{ request('ano') }}">
+        </div>
+
+        <div>
+            <label for="categoria">Categoria</label>
+            <select name="categoria" id="categoria">
+                <option value="">Todas</option>
+                @foreach($categorias as $categoria)
+                    <option value="{{ $categoria }}" {{ request('categoria') == $categoria ? 'selected' : '' }}>
+                        {{ $categoria }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+        <div>
+            <button type="submit">Filtrar</button>
+        </div>
+    </form>
+
+
+
     <main>
         <h2>Catálogo de Filmes</h2>
         <div class="filmes-container">

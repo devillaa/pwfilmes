@@ -148,3 +148,69 @@ h2 {
     color: #760101;
     cursor: pointer;
 }
+
+.filtros-container {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 0 10px 0 10px;
+}
+
+.filtros-container label {
+    color: #00e054;
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.filtros-container input[type="number"],
+.filtros-container select {
+    background: transparent;
+    color: #d8d8d8;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 6px 8px;
+    font-size: 0.95rem;
+    width: 120px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.filtros-container input[type="number"]:focus,
+.filtros-container select:focus {
+    border-color: #00e054;
+    box-shadow: 0 0 4px #00e05466;
+    outline: none;
+}
+
+.filtros-container button {
+    background: #00e054;
+    color: #181818;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.filtros-container button:hover {
+    background: #00b846;
+    transform: translateY(-1px);
+}   
+
+.filtros-container #categoria option {
+    background-color: #000;
+    border: none;
+    color: #fff;
+    font-weight: bolder;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    filter: invert(60%) sepia(100%) saturate(500%) hue-rotate(100deg);
+}
