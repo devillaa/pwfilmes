@@ -4,10 +4,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FilmesController;
 use Illuminate\Support\Facades\Route;
 
-// Rotas públicas (usuário pode ver filmes)
-Route::get('/filmes', [FilmesController::class, 'index'])->name('filmes.index');
-Route::get('/filmes/{filme}', [FilmesController::class, 'show'])->name('filmes.show');
-
 // Rotas de administração
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/filmes/create', [FilmesController::class, 'create'])->name('filmes.create');
@@ -16,6 +12,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/filmes/{filme}', [FilmesController::class, 'update'])->name('filmes.update');
     Route::delete('/filmes/{filme}', [FilmesController::class, 'destroy'])->name('filmes.destroy');
 });
+
+// Rotas públicas (usuário pode ver filmes)
+Route::get('/filmes', [FilmesController::class, 'index'])->name('filmes.index');
+Route::get('/filmes/{filme}', [FilmesController::class, 'show'])->name('filmes.show');
 
 Route::get('/', [FilmesController::class, 'home'])->name('home');
 
