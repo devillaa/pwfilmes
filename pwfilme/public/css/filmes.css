@@ -207,10 +207,15 @@ h2 {
     background-color: #000;
     border: none;
     color: #fff;
-    font-weight: bolder;
+    font-weight: bold;
 }
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     filter: invert(60%) sepia(100%) saturate(500%) hue-rotate(100deg);
+}
+
+.filtros-container input[type="number"], .filtros-container select{
+    font-weight: bold;
+    color: #fff;
 }
