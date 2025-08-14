@@ -57,6 +57,9 @@ class CategoriasController extends Controller
     // Excluir categoria (admin)
     public function destroy(Categoria $categoria)
     {
+
+        $categoria->filmes()->delete();
+
         $categoria->delete();
         return redirect()->route('categorias.index')->with('success', 'Categoria excluída com sucesso!');
     }
