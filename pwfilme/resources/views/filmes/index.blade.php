@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filmes - ToVerde Films</title>
+
     <!-- CSS Principal -->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/filmes.css') }}">
@@ -20,9 +21,6 @@
 <body>
     <x-header />
 
-        <div>
-            <label for="ano">Ano</label>
-            <input type="number" name="ano" id="ano" placeholder="Digite o ano" value="{{ request('ano') }}">
     <div class="container">
         <main>
             <h1 class="page-title">🎬 Catálogo de Filmes</h1>

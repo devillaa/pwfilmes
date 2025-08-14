@@ -20,6 +20,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/categorias/{categoria}/edit', [CategoriasController::class, 'edit'])->name('categorias.edit');
     Route::put('/categorias/{categoria}', [CategoriasController::class, 'update'])->name('categorias.update');
     Route::delete('/categorias/{categoria}', [CategoriasController::class, 'destroy'])->name('categorias.destroy');
+
+    // Dashboard administrativo
+    Route::get('/tmdb/dashboard', [TMDBController::class, 'dashboard'])->name('tmdb.dashboard');
 });
 
 // Rotas públicas (usuário pode ver filmes)
