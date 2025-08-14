@@ -55,7 +55,7 @@ class FilmesController extends Controller
             'nome' => 'required|string|max:255',
             'sinopse' => 'required|string',
             'ano' => 'required|integer',
-            'categoria' => 'required|string|max:255',
+            'categoria' => 'required|exists:categorias,id',
             'trailer' => 'nullable|string|max:255',
             'imagem_arquivo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'imagem_url' => 'nullable|url|max:255',
@@ -73,7 +73,7 @@ class FilmesController extends Controller
             'nome' => $request->nome,
             'sinopse' => $request->sinopse,
             'ano' => $request->ano,
-            'categoria' => $request->categoria,
+            'categoria_id' => $request->categoria,
             'imagem' => $imagem,
             'trailer' => $request->trailer,
         ]);
@@ -84,7 +84,8 @@ class FilmesController extends Controller
     // Mostrar formulário de edição (admin)
     public function edit(Filme $filme)
     {
-        return view('filmes.edit', compact('filme'));
+        $categorias = Categoria::all();
+        return view('filmes.edit', compact('filme', 'categorias'));
     }
 
     // Atualizar filme (admin)
@@ -94,7 +95,7 @@ class FilmesController extends Controller
             'nome' => 'required|string|max:255',
             'sinopse' => 'required|string',
             'ano' => 'required|integer',
-            'categoria' => 'required|string|max:255',
+            'categoria' => 'required|exists:categorias,id',
             'trailer' => 'nullable|string|max:255',
             'imagem_arquivo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'imagem_url' => 'nullable|url|max:255',
@@ -120,7 +121,7 @@ class FilmesController extends Controller
             'nome' => $request->nome,
             'sinopse' => $request->sinopse,
             'ano' => $request->ano,
-            'categoria' => $request->categoria,
+            'categoria_id' => $request->categoria,
             'imagem' => $imagem,
             'trailer' => $request->trailer,
         ]);

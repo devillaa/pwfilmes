@@ -1,24 +1,87 @@
-<header>
-    <a href="{{ route('filmes.index') }}">
-        <h1>ToVerde Films</h1>
-    </a>
-    <nav>
-        <a href="{{ route('filmes.index') }}">Filmes</a>
+<header class="header">
+    <div class="header-content">
+        <a href="{{ route('filmes.index') }}" class="logo">
+            🎬 ToVerde Films
+        </a>
 
-        @if (auth()->check())
-            @if (auth()->user()->isAdmin)
-                <a href="{{ route('filmes.create') }}">Cadastrar Filme</a>
-                <a href="{{ route('categorias.index') }}">Categorias</a>
-            @endif
+        <nav class="nav-menu">
+            <a href="{{ route('filmes.index') }}" class="nav-link {{ request()->routeIs('filmes.*') ? 'active' : '' }}">
+                🎬 Filmes
+            </a>
 
-            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a>
+            @auth
+                <a href="{{ route('favoritos.index') }}"
+                    class="nav-link {{ request()->routeIs('favoritos.*') ? 'active' : '' }}">
+                    ❤️ Favoritos
+                </a>
 
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
-                @csrf
-            </form>
-        @else
-            <a href="{{ route('login') }}">Login</a>
-            <a href="{{ route('register') }}">Registrar</a>
-        @endif
-    </nav>
+                @if (auth()->user()->isAdmin)
+                    <a href="{{ route('categorias.index') }}"
+                        class="nav-link {{ request()->routeIs('categorias.*') ? 'active' : '' }}">
+                        📂 Categorias
+                    </a>
+
+                    <a href="{{ route('tmdb.dashboard') }}"
+                        class="nav-link {{ request()->routeIs('tmdb.*') ? 'active' : '' }}">
+                        📊 Dashboard
+                    </a>
+                @endif
+            @endauth
+        </nav>
+
+        <div class="header-actions">
+            @auth
+                <div class="user-menu">
+                    <span class="user-name">{{ auth()->user()->name }}</span>
+
+                    <form action="{{ route('logout') }}" method="POST" class="logout-form">
+                        @csrf
+                        <button type="submit" class="btn btn-outline btn-sm">
+                            🚪 Sair
+                        </button>
+                    </form>
+                </div>
+            @else
+                <a href="{{ route('login') }}" class="nav-link {{ request()->routeIs('login') ? 'active' : '' }}">
+                    🔑 Login
+                </a>
+
+                <a href="{{ route('register') }}" class="nav-link {{ request()->routeIs('register') ? 'active' : '' }}">
+                    📝 Cadastro
+                </a>
+            @endauth
+        </div>
+    </div>
+
+    <style>
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-name {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .logout-form {
+            margin: 0;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-tertiary);
+        }
+    </style>
 </header>

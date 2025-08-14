@@ -2,57 +2,136 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Filme - ToVerde Films</title>
-    <link rel="stylesheet" href="{{ asset('css/editar.css') }}">
+
+    <!-- CSS Principal -->
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/filmes.css') }}">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>
     <x-header />
 
-    <main>
-        <h2>Cadastrar Filme</h2>
-        <div>
-            <form action="{{ route('filmes.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
+    <div class="container">
+        <main>
+            <h1 class="page-title">🎬 Cadastrar Novo Filme</h1>
+            <p class="page-subtitle">Adicione um novo filme ao seu catálogo</p>
 
-                <label for="nome">Nome</label>
-                <input type="text" name="nome" id="nome" value="{{ old('nome') }}" required>
+            <div class="form-container" data-animate>
+                <form action="{{ route('filmes.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
 
-                <label for="sinopse" style="color:#00e054;">Sinopse</label>
-                <textarea name="sinopse" id="sinopse" rows="4" required>{{ old('sinopse') }}</textarea>
+                    <div class="form-group">
+                        <label for="nome" class="form-label">Nome do Filme</label>
+                        <input type="text" name="nome" id="nome" class="form-input"
+                            value="{{ old('nome') }}" required placeholder="Ex: O Poderoso Chefão">
 
-                <label for="ano">Ano</label>
-                <input type="number" name="ano" id="ano" value="{{ old('ano') }}" required>
+                        @error('nome')
+                            <div class="field-error">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-                <label for="categoria" style="color:#00e054;">Categoria</label>
-                <select name="categoria_id" id="categoria">
-                    @foreach ($categorias as $categoria)
-                        <option value="{{ $categoria->id }}">
-                            {{ $categoria->nome }}
-                        </option>
-                    @endforeach
-                </select>
+                    <div class="form-group">
+                        <label for="sinopse" class="form-label">Sinopse</label>
+                        <textarea name="sinopse" id="sinopse" class="form-textarea" rows="4" required
+                            placeholder="Descreva a história do filme...">{{ old('sinopse') }}</textarea>
 
-                <label for="imagem">Imagem da Capa</label>
-                <div>
-                    <input type="file" name="imagem_arquivo" id="imagem_arquivo" accept="image/*">
-                    <div>ou</div>
-                    <input type="text" name="imagem_url" id="imagem_url" placeholder="URL da imagem" value="{{ old('imagem_url') }}">
-                </div>
+                        @error('sinopse')
+                            <div class="field-error">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-                <label for="trailer">Link do Trailer (YouTube)</label>
-                <input type="text" name="trailer" id="trailer" value="{{ old('trailer') }}">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="ano" class="form-label">Ano de Lançamento</label>
+                            <input type="number" name="ano" id="ano" class="form-input"
+                                value="{{ old('ano') }}" required min="1900" max="{{ date('Y') + 1 }}"
+                                placeholder="Ex: 2023">
 
-                <button type="submit" class="btn-trailer">Cadastrar Filme</button>
-            </form>
+                            @error('ano')
+                                <div class="field-error">{{ $message }}</div>
+                            @enderror
+                        </div>
 
-            <a href="{{ route('filmes.index') }}" class="btn-trailer">
-                Voltar
-            </a>
-        </div>
-    </main>
+                        <div class="form-group">
+                            <label for="categoria" class="form-label">Categoria</label>
+                            <select name="categoria" id="categoria" class="form-select" required>
+                                <option value="">Selecione uma categoria</option>
+                                @foreach ($categorias as $categoria)
+                                    <option value="{{ $categoria->id }}"
+                                        {{ old('categoria') == $categoria->id ? 'selected' : '' }}>
+                                        {{ $categoria->nome }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            @error('categoria')
+                                <div class="field-error">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="trailer" class="form-label">Link do Trailer (YouTube)</label>
+                        <input type="url" name="trailer" id="trailer" class="form-input"
+                            value="{{ old('trailer') }}" placeholder="https://www.youtube.com/watch?v=...">
+
+                        @error('trailer')
+                            <div class="field-error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Imagem da Capa</label>
+                        <div class="image-options">
+                            <div class="image-option">
+                                <label for="imagem_arquivo" class="image-option-label">📁 Enviar arquivo</label>
+                                <input type="file" name="imagem_arquivo" id="imagem_arquivo" accept="image/*"
+                                    class="form-file">
+                            </div>
+
+                            <div class="image-divider">ou</div>
+
+                            <div class="image-option">
+                                <label for="imagem_url" class="image-option-label">🔗 URL da imagem</label>
+                                <input type="url" name="imagem_url" id="imagem_url" class="form-input"
+                                    value="{{ old('imagem_url') }}" placeholder="https://exemplo.com/imagem.jpg">
+                            </div>
+                        </div>
+
+                        @error('imagem_arquivo')
+                            <div class="field-error">{{ $message }}</div>
+                        @enderror
+                        @error('imagem_url')
+                            <div class="field-error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            🎬 Cadastrar Filme
+                        </button>
+
+                        <a href="{{ route('filmes.index') }}" class="btn btn-outline">
+                            ← Voltar
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript Principal -->
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 
 </html>

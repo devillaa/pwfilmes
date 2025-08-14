@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\FilmesController;
+use App\Http\Controllers\FavoritosController;
+use App\Http\Controllers\TMDBController;
 use Illuminate\Support\Facades\Route;
 
 // Rotas de administração
@@ -23,6 +25,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
 // Rotas públicas (usuário pode ver filmes)
 Route::get('/filmes', [FilmesController::class, 'index'])->name('filmes.index');
 Route::get('/filmes/{filme}', [FilmesController::class, 'show'])->name('filmes.show');
+
+// Rotas de favoritos (usuários autenticados)
+Route::middleware(['auth'])->group(function () {
+    Route::get('/favoritos', [FavoritosController::class, 'index'])->name('favoritos.index');
+    Route::post('/favoritos/{filme}/toggle', [FavoritosController::class, 'toggle'])->name('favoritos.toggle');
+    Route::delete('/favoritos/{filme}', [FavoritosController::class, 'destroy'])->name('favoritos.destroy');
+});
 
 Route::get('/', [FilmesController::class, 'home'])->name('home');
 

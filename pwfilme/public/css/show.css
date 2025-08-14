@@ -37,89 +37,173 @@ header nav a:hover {
     color: #00e054;
 }
 
+/* Página de Detalhes do Filme */
+
 .filme-detalhes {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 30px;
-    margin-top: 40px; /* Margem para não ficar colado no header */
+    padding: 2rem 0;
 }
 
+/* Header do filme */
 .filme-header {
     display: grid;
     grid-template-columns: 300px 1fr;
-    gap: 40px;
-    margin-bottom: 40px;
-    background: #232a32;
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 0 4px 20px #0008;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    background: var(--bg-card);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    border: 1px solid var(--bg-tertiary);
 }
 
 .filme-poster {
-    text-align: center;
+    position: relative;
 }
 
 .filme-poster img {
     width: 100%;
-    max-width: 280px;
-    height: 420px;
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px #0006;
+    height: auto;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
 }
 
-.filme-info h1 {
-    color: #fff;
+.filme-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.filme-title {
     font-size: 2.5rem;
-    margin: 0 0 10px 0;
-    letter-spacing: 1px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.2;
 }
 
 .filme-meta {
     display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
+    gap: 1rem;
+    flex-wrap: wrap;
     align-items: center;
 }
 
 .ano {
-    background: #00e054;
-    color: #181818;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 1.1rem;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 0.875rem;
 }
 
 .categoria-badge {
-    background: #333;
-    color: #00e054;
-    padding: 6px 12px;
-    border-radius: 20px;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
     font-weight: 500;
-    border: 1px solid #00e054;
+    font-size: 0.875rem;
+}
+
+.avaliacao-badge {
+    background: var(--accent-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.diretor,
+.duracao,
+.elenco {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.diretor strong,
+.duracao strong,
+.elenco strong {
+    color: var(--text-primary);
+    font-weight: 600;
 }
 
 .sinopse-texto {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #d8d8d8;
-    margin-bottom: 30px;
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--bg-tertiary);
 }
 
+.sinopse-texto h3 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.sinopse-texto p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+.favorito-container {
+    margin-top: auto;
+}
+
+.favorito-form {
+    margin: 0;
+}
+
+.btn-favorito {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-radius: var(--border-radius-lg);
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-favorito:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-favorito.favoritado {
+    background: var(--text-error);
+    border-color: var(--text-error);
+    color: white;
+}
+
+.btn-favorito.favoritado:hover {
+    background: #dc2626;
+}
+
+/* Seção do trailer */
 .trailer-section {
-    background: #232a32;
-    border-radius: 15px;
-    padding: 30px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 20px #0008;
+    background: var(--bg-card);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    margin-bottom: 3rem;
+    border: 1px solid var(--bg-tertiary);
 }
 
 .trailer-section h2 {
-    color: #fff;
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    text-align: left;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .trailer-container {
@@ -127,7 +211,7 @@ header nav a:hover {
     width: 100%;
     height: 0;
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    border-radius: 10px;
+    border-radius: var(--border-radius-lg);
     overflow: hidden;
 }
 
@@ -138,80 +222,88 @@ header nav a:hover {
     width: 100%;
     height: 100%;
     border: none;
-    border-radius: 10px;
+    border-radius: var(--border-radius-lg);
 }
 
+.trailer-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    border-radius: var(--border-radius-lg);
+}
+
+.trailer-placeholder p {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+}
+
+/* Ações */
 .acoes-container {
     display: flex;
-    gap: 15px;
+    gap: 1rem;
     justify-content: center;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    flex-wrap: wrap;
+    padding: 2rem;
+    background: var(--bg-card);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--bg-tertiary);
 }
 
-/* Botões com tamanhos mais parecidos */
-.btn-voltar,
-.btn-editar,
-.btn-excluir {
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 1rem;
-    transition: all 0.3s;
-    min-width: 140px; /* Largura mínima igual para todos */
-    text-align: center;
-    display: inline-block;
-    border: none;
-    cursor: pointer;
+.acoes-container .btn {
+    padding: 0.875rem 1.5rem;
+    font-weight: 600;
+    border-radius: var(--border-radius-lg);
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.btn-voltar {
-    background: #333;
-    color: #00e054;
-    border: 2px solid #00e054;
+.acoes-container .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
 }
 
-.btn-voltar:hover {
-    background: #00e054;
-    color: #181818;
+/* Animações */
+.filme-detalhes[data-animate] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.btn-editar {
-    background: #00e054;
-    color: #181818;
-}
-
-.btn-editar:hover {
-    background: #00b846;
-    color: #fff;
-}
-
-.btn-excluir {
-    background: #e00000;
-    color: #fff;
-}
-
-.btn-excluir:hover {
-    background: #a84c4c;
+.filme-detalhes[data-animate].animate-in {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
     .filme-header {
         grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 20px;
+        gap: 2rem;
+        padding: 1.5rem;
     }
 
-    .filme-info h1 {
+    .filme-poster {
+        max-width: 250px;
+        margin: 0 auto;
+    }
+
+    .filme-title {
         font-size: 2rem;
         text-align: center;
     }
 
     .filme-meta {
         justify-content: center;
-        flex-wrap: wrap;
     }
 
     .acoes-container {
@@ -219,15 +311,31 @@ header nav a:hover {
         align-items: center;
     }
 
+    .acoes-container .btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
     .filme-detalhes {
-        padding: 0 20px;
-        margin-top: 20px;
+        padding: 1rem 0;
     }
 
-    .btn-voltar,
-    .btn-editar,
-    .btn-excluir {
-        width: 100%;
-        max-width: 200px;
+    .filme-header {
+        padding: 1rem;
+    }
+
+    .filme-title {
+        font-size: 1.75rem;
+    }
+
+    .trailer-section {
+        padding: 1.5rem;
+    }
+
+    .acoes-container {
+        padding: 1.5rem;
     }
 }

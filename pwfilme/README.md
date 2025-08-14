@@ -1,61 +1,215 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🎬 ToVerde Films
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Um sistema completo de gerenciamento de filmes desenvolvido com Laravel.
 
-## About Laravel
+## 📋 Índice
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+-   [Visão Geral](#visão-geral)
+-   [Funcionalidades](#funcionalidades)
+-   [Tecnologias Utilizadas](#tecnologias-utilizadas)
+-   [Instalação](#instalação)
+-   [Estrutura do Projeto](#estrutura-do-projeto)
+-   [Arquivos CSS e JavaScript](#arquivos-css-e-javascript)
+-   [Uso](#uso)
+-   [Contribuição](#contribuição)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🎯 Visão Geral
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+O ToVerde Films é um sistema completo de gerenciamento de filmes que permite:
 
-## Learning Laravel
+-   **Catálogo de Filmes**: Visualização e busca de filmes
+-   **Sistema de Favoritos**: Usuários podem favoritar filmes
+-   **Dashboard Administrativo**: Gerenciamento completo do sistema
+-   **Interface Moderna**: Design responsivo e intuitivo
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ✨ Funcionalidades
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Para Usuários
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+-   📺 Visualizar catálogo de filmes
+-   🔍 Filtrar por ano e categoria
+-   ❤️ Favoritar filmes
+-   🎬 Assistir trailers
+-   📱 Interface responsiva
 
-## Laravel Sponsors
+### Para Administradores
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+-   📊 Dashboard de estatísticas
+-   ✏️ Gerenciamento de filmes
+-   📂 Gerenciamento de categorias
+-   📈 Relatórios e métricas
 
-### Premium Partners
+## 🛠️ Tecnologias Utilizadas
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+-   **Backend**: Laravel 11 (PHP 8.2+)
+-   **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+-   **Banco de Dados**: MySQL/PostgreSQL
+-   **Design**: CSS Custom Properties, Flexbox, Grid
+-   **Animações**: CSS Transitions, Intersection Observer
 
-## Contributing
+## 🚀 Instalação
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Pré-requisitos
 
-## Code of Conduct
+-   PHP 8.2 ou superior
+-   Composer
+-   MySQL/PostgreSQL
+-   Node.js (opcional, para assets)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Passos de Instalação
 
-## Security Vulnerabilities
+1. **Clone o repositório**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+git clone https://github.com/seu-usuario/pwfilmes.git
+cd pwfilmes
+```
 
-## License
+2. **Instale as dependências PHP**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+composer install
+```
+
+3. **Configure o ambiente**
+
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+4. **Configure o banco de dados**
+
+```bash
+# Edite o arquivo .env com suas configurações de banco
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=pwfilmes
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+5. **Execute as migrações**
+
+```bash
+php artisan migrate
+```
+
+6. **Execute os seeders**
+
+```bash
+php artisan db:seed
+```
+
+7. **Configure o storage**
+
+```bash
+php artisan storage:link
+```
+
+8. **Inicie o servidor**
+
+```bash
+php artisan serve
+```
+
+O sistema estará disponível em `http://localhost:8000`
+
+## 📁 Estrutura do Projeto
+
+```
+pwfilmes/
+├── app/
+│   ├── Console/Commands/     # Comandos Artisan
+│   ├── Http/Controllers/     # Controladores
+│   ├── Models/              # Modelos Eloquent
+│   └── Services/            # Serviços
+├── database/
+│   ├── migrations/          # Migrações
+│   └── seeders/            # Seeders
+├── public/
+│   ├── css/                # Arquivos CSS
+│   └── js/                 # Arquivos JavaScript
+├── resources/
+│   └── views/              # Views Blade
+└── routes/
+    └── web.php             # Rotas web
+```
+
+## 🎨 Arquivos CSS e JavaScript
+
+### CSS
+
+-   **`main.css`**: Estilos base, variáveis CSS, componentes gerais
+-   **`filmes.css`**: Estilos específicos para a seção de filmes
+-   **`dashboard.css`**: Estilos do dashboard administrativo
+-   **`categorias.css`**: Estilos para gerenciamento de categorias
+-   **`auth.css`**: Estilos para autenticação (login/registro)
+
+### JavaScript
+
+-   **`main.js`**: Funcionalidades gerais, utilitários, gerenciadores
+-   **`dashboard.js`**: Funcionalidades específicas do dashboard
+-   **`filmes.js`**: Funcionalidades da página de filmes
+
+### Características do Design
+
+#### Sistema de Design
+
+-   **Variáveis CSS**: Cores, espaçamentos, tipografia centralizados
+-   **Componentes Reutilizáveis**: Botões, cards, formulários padronizados
+-   **Responsividade**: Mobile-first design
+-   **Animações**: Transições suaves e micro-interações
+-   **Acessibilidade**: Contraste adequado, navegação por teclado
+
+#### Paleta de Cores
+
+```css
+:root {
+    --primary-color: #6366f1; /* Azul principal */
+    --secondary-color: #10b981; /* Verde */
+    --accent-color: #f59e0b; /* Laranja */
+    --bg-primary: #0f172a; /* Fundo escuro */
+    --bg-secondary: #1e293b; /* Fundo secundário */
+    --text-primary: #f8fafc; /* Texto principal */
+    --text-secondary: #cbd5e1; /* Texto secundário */
+}
+```
+
+## 📖 Uso
+
+### Acessando o Sistema
+
+1. **Acesse** `http://localhost:8000`
+2. **Registre-se** ou **faça login**
+3. **Navegue** pelo catálogo de filmes
+4. **Favorite** seus filmes preferidos
+
+### Funcionalidades Administrativas
+
+1. **Faça login** como administrador
+2. **Acesse o Dashboard** para ver estatísticas
+3. **Gerencie filmes** através do painel administrativo
+4. **Organize categorias** conforme necessário
+
+## 🤝 Contribuição
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
+## 🔗 Links Úteis
+
+-   [Laravel Documentation](https://laravel.com/docs)
+-   [Inter Font (Google Fonts)](https://fonts.google.com/specimen/Inter)
+
+---
+
+**Desenvolvido com ❤️ usando Laravel**
