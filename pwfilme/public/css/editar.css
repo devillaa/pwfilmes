@@ -44,7 +44,7 @@ main {
 }
 
 main > div {
-    max-width: 480px;
+    max-width: 600px;
     margin: 0 auto;
 }
 
@@ -134,9 +134,9 @@ h2 {
 
 form {
     background: #232a32;
-    padding: 32px 24px;
-    border-radius: 10px;
-    box-shadow: 0 2px 12px #0005;
+    padding: 40px 32px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px #0007;
     margin-bottom: 0;
     display: flex;
     flex-direction: column;
@@ -145,32 +145,114 @@ form {
 
 form label {
     color: #00e054;
-    font-weight: 500;
-    margin-bottom: 4px;
-    margin-top: 8px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    margin-top: 16px;
     text-align: left;
+    font-size: 1.05em;
+}
+
+form label:first-of-type {
+    margin-top: 0;
 }
 
 form input[type="text"],
 form input[type="number"],
 form input[type="file"],
 form input[type="url"],
-form textarea {
+form textarea,
+form select {
     width: 100%;
     background: #181818;
     color: #d8d8d8;
     border: 1px solid #444;
-    border-radius: 4px;
-    padding: 10px;
-    font-size: 1em;
-    margin-bottom: 14px;
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-size: 1.05em;
+    margin-bottom: 20px;
     box-sizing: border-box;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
+form input[type="text"]:focus,
+form input[type="number"]:focus,
+form input[type="url"]:focus,
+form textarea:focus,
+form select:focus {
+    outline: none;
+    border-color: #00e054;
+    box-shadow: 0 0 0 2px rgba(0, 224, 84, 0.2);
+}
+
+form select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d8d8d8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+form select:hover {
+    border-color: #666;
+}
+
+form select option {
+    background: #181818;
+    color: #d8d8d8;
+    padding: 8px 12px;
+    font-weight: 500;
+}
+
+form select option:hover,
+form select option:checked {
+    background: #00e054;
+    color: #181818;
+}
+
+/* Versão melhorada do input de arquivo */
 form input[type="file"] {
-    padding: 6px 0;
-    background: none;
-    color: #b0b0b0;
+    padding: 14px 16px;
+    background: #181818;
+    color: #d8d8d8;
+    border: 2px dashed #444;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1.05em;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+form input[type="file"]:hover {
+    border-color: #00e054;
+    background: rgba(0, 224, 84, 0.05);
+}
+
+form input[type="file"]:focus {
+    outline: none;
+    border-color: #00e054;
+    box-shadow: 0 0 0 3px rgba(0, 224, 84, 0.2);
+}
+
+form input[type="file"]::-webkit-file-upload-button {
+    background: #00e054;
+    color: #181818;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 12px;
+    font-family: inherit;
+    font-size: 0.95em;
+    transition: background 0.2s;
+}
+
+form input[type="file"]::-webkit-file-upload-button:hover {
+    background: #00b846;
 }
 
 form textarea {
@@ -179,25 +261,88 @@ form textarea {
     font-family: inherit;
 }
 
+/* Container para input duplo de imagem */
+.imagem-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: rgba(24, 24, 24, 0.5);
+    border-radius: 8px;
+    border: 1px dashed #444;
+}
+
+.imagem-opcao {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.imagem-opcao .opcao-label {
+    color: #b0b0b0;
+    font-size: 0.95em;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+}
+
+.ou-divisor {
+    text-align: center;
+    color: #666;
+    font-weight: bold;
+    font-size: 1.1em;
+    position: relative;
+    margin: 10px 0;
+}
+
+.ou-divisor::before,
+.ou-divisor::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: #444;
+}
+
+.ou-divisor::before {
+    left: 0;
+}
+
+.ou-divisor::after {
+    right: 0;
+}
+
+.imagem-opcao input[type="file"],
+.imagem-opcao input[type="text"] {
+    margin-bottom: 0;
+}
+
 form .btn-trailer {
     width: 100%;
-    margin-top: 10px;
+    margin-top: 24px;
     margin-bottom: 0;
+    padding: 16px 24px;
+    font-size: 1.1em;
+    font-weight: 700;
 }
 
 a.btn-trailer {
     display: block;
     width: 100%;
-    margin-top: 16px;
+    margin-top: 24px;
     text-align: center;
     background: #232a32;
     color: #00e054;
     border: 2px solid #00e054;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 1rem;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 1.05em;
     transition: background 0.18s, color 0.18s;
     box-sizing: border-box;
+    padding: 16px 24px;
+    text-decoration: none;
 }
 
 a.btn-trailer:hover {
@@ -226,4 +371,26 @@ form .imagem-atual img {
     margin-left: auto;
     margin-right: auto;
     object-fit: contain;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    main > div {
+        max-width: 90%;
+        padding: 0 10px;
+    }
+
+    form {
+        padding: 20px 16px;
+    }
+
+    form div {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    form div > div {
+        text-align: center;
+        margin: 5px 0;
+    }
 }

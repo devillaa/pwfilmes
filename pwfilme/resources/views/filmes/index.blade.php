@@ -21,9 +21,9 @@
             <label for="categoria">Categoria</label>
             <select name="categoria" id="categoria">
                 <option value="">Todas</option>
-                @foreach($categorias as $categoria)
-                    <option value="{{ $categoria }}" {{ request('categoria') == $categoria ? 'selected' : '' }}>
-                        {{ $categoria }}
+                @foreach ($categorias as $categoria)
+                    <option value="{{ $categoria->id }}" {{ request('categoria') == $categoria ? 'selected' : '' }}>
+                        {{ $categoria->nome }}
                     </option>
                 @endforeach
             </select>
@@ -34,37 +34,39 @@
         </div>
     </form>
 
-
-
     <main>
         <h2>Catálogo de Filmes</h2>
         <div class="filmes-container">
             @foreach ($filmes as $filme)
-                <div class="filme-card">
-                    @php
-                        $img = filter_var($filme->imagem, FILTER_VALIDATE_URL)
-                            ? $filme->imagem
-                            : asset('storage/' . $filme->imagem);
-                    @endphp
-                    <img src="{{ $img }}" alt="{{ $filme->nome }}">
-                    <h3>{{ $filme->nome }} ({{ $filme->ano }})</h3>
-                    <p class="categoria">{{ $filme->categoria }}</p>
-                    <p class="sinopse">{{ Str::limit($filme->sinopse, 100) }}</p>
-                    <a href="{{ $filme->trailer }}" target="_blank" class="btn-trailer">Ver Trailer</a>
-                    @if (auth()->check() && auth()->user()->isAdmin)
-                        <a href="{{ route('filmes.edit', $filme->id) }}" class="btn-trailer"
-                            style="background:#222a32;color:#00e054;margin-top:8px;">Editar</a>
+                <div class="filme-wrapper">
+                    <a href="{{ route('filmes.show', $filme->id) }}" class="filme-link">
+                        <div class="filme-card">
+                            @php
+                                $img = filter_var($filme->imagem, FILTER_VALIDATE_URL)
+                                    ? $filme->imagem
+                                    : asset('storage/' . $filme->imagem);
+                            @endphp
+                            <img src="{{ $img }}" alt="{{ $filme->nome }}">
+                            <h3>{{ $filme->nome }} ({{ $filme->ano }})</h3>
+                            <p class="categoria">{{ $filme->categoria->nome }}</p>
+                            <p class="sinopse">{{ Str::limit($filme->sinopse, 100) }}</p>
+                        </div>
+                    </a>
 
-                        <form action="{{ route('filmes.destroy', $filme->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-
-                            <button type="submit" id="btn-destroy"
-                            onclick="return confirm('Tem certeza que deseja excluir este filme?')">
-                            Excluir Filme
-                            </button>
-                        </form>
-                    @endif
+                    <div class="filme-actions">
+                        <a href="{{ $filme->trailer }}" target="_blank" class="btn-trailer">Ver Trailer</a>
+                        @if (auth()->check() && auth()->user()->isAdmin)
+                            <a href="{{ route('filmes.edit', $filme->id) }}" class="btn-trailer btn-edit">Editar</a>
+                            <form action="{{ route('filmes.destroy', $filme->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                    onclick="return confirm('Tem certeza que deseja excluir este filme?')">
+                                    Excluir Filme
+                                </button>
+                            </form>
+                        @endif
+                    </div>
                 </div>
             @endforeach
         </div>

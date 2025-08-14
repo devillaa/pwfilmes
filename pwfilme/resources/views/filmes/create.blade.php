@@ -27,14 +27,19 @@
                 <input type="number" name="ano" id="ano" value="{{ old('ano') }}" required>
 
                 <label for="categoria" style="color:#00e054;">Categoria</label>
-                <input type="text" name="categoria" id="categoria" value="{{ old('categoria') }}" required>
+                <select name="categoria_id" id="categoria">
+                    @foreach ($categorias as $categoria)
+                        <option value="{{ $categoria->id }}">
+                            {{ $categoria->nome }}
+                        </option>
+                    @endforeach
+                </select>
 
                 <label for="imagem">Imagem da Capa</label>
                 <div>
                     <input type="file" name="imagem_arquivo" id="imagem_arquivo" accept="image/*">
                     <div>ou</div>
-                    <input type="text" name="imagem_url" id="imagem_url" placeholder="URL da imagem"
-                        value="{{ old('imagem_url') }}">
+                    <input type="text" name="imagem_url" id="imagem_url" placeholder="URL da imagem" value="{{ old('imagem_url') }}">
                 </div>
 
                 <label for="trailer">Link do Trailer (YouTube)</label>

@@ -58,21 +58,39 @@ h2 {
     padding: 0 30px;
 }
 
+/* Container para cada filme (link + actions) */
+.filme-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Link do filme - sem decoração */
+.filme-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.18s, box-shadow 0.18s;
+    border-radius: 10px;
+}
+
+.filme-link:hover {
+    transform: translateY(-6px) scale(1.04);
+}
+
+.filme-link:hover .filme-card {
+    box-shadow: 0 6px 24px #0008;
+}
+
 .filme-card {
     background: #232a32;
     border-radius: 10px;
     box-shadow: 0 2px 12px #0005;
     padding: 18px 14px 20px 14px;
     text-align: center;
-    transition: transform 0.18s, box-shadow 0.18s;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.filme-card:hover {
-    transform: translateY(-6px) scale(1.04);
-    box-shadow: 0 6px 24px #0008;
+    transition: box-shadow 0.18s;
 }
 
 .filme-card img {
@@ -80,13 +98,10 @@ h2 {
     max-width: 220px;
     height: 320px;
     object-fit: cover;
-    background: none;
     border-radius: 7px;
     margin-bottom: 14px;
     box-shadow: 0 2px 8px #0004;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .filme-card h3 {
@@ -111,6 +126,15 @@ h2 {
     min-height: 48px;
 }
 
+/* Container dos botões de ação */
+.filme-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 0 14px;
+}
+
 .btn-trailer {
     display: inline-block;
     padding: 8px 18px;
@@ -121,7 +145,7 @@ h2 {
     text-decoration: none;
     font-size: 1rem;
     transition: background 0.18s, color 0.18s;
-    margin-top: 8px;
+    text-align: center;
 }
 
 .btn-trailer:hover {
@@ -129,26 +153,42 @@ h2 {
     color: #fff;
 }
 
-#btn-destroy {
-    display: block;
+/* Botão de editar */
+.btn-edit {
+    background: #222a32 !important;
+    color: #00e054 !important;
+    border: 1px solid #00e054;
+}
+
+.btn-edit:hover {
+    background: #00e054 !important;
+    color: #181818 !important;
+}
+
+/* Botão de excluir */
+.filme-actions form {
+    margin: 0;
+}
+
+.filme-actions button {
     width: 100%;
-    margin-top: 16px;
-    text-align: center;
+    padding: 8px 18px;
     background: #232a32;
     color: #e00000;
-    border: none;
+    border: 1px solid #e00000;
     border-radius: 5px;
     font-weight: bold;
     font-size: 1rem;
     transition: background 0.18s, color 0.18s;
-    box-sizing: border-box;
-}
-
-#btn-destroy:hover {
-    color: #760101;
     cursor: pointer;
 }
 
+.filme-actions button:hover {
+    background: #e00000;
+    color: #fff;
+}
+
+/* Filtros */
 .filtros-container {
     display: flex;
     gap: 10px;
@@ -156,7 +196,7 @@ h2 {
     justify-content: flex-start;
     margin-bottom: 20px;
     margin-top: 20px;
-    padding: 0 10px 0 10px;
+    padding: 0 30px;
 }
 
 .filtros-container label {
@@ -170,7 +210,8 @@ h2 {
 .filtros-container input[type="number"],
 .filtros-container select {
     background: transparent;
-    color: #d8d8d8;
+    color: #fff;
+    font-weight: bold;
     border: 1px solid #444;
     border-radius: 4px;
     padding: 6px 8px;
@@ -201,7 +242,7 @@ h2 {
 .filtros-container button:hover {
     background: #00b846;
     transform: translateY(-1px);
-}   
+}
 
 .filtros-container #categoria option {
     background-color: #000;
@@ -215,7 +256,23 @@ input[type=number]::-webkit-outer-spin-button {
     filter: invert(60%) sepia(100%) saturate(500%) hue-rotate(100deg);
 }
 
-.filtros-container input[type="number"], .filtros-container select{
-    font-weight: bold;
-    color: #fff;
+/* Responsividade */
+@media (max-width: 768px) {
+    .filmes-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        padding: 0 20px;
+    }
+
+    .filtros-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+        padding: 0 20px;
+    }
+
+    .filtros-container input[type="number"],
+    .filtros-container select {
+        width: 100%;
+    }
 }

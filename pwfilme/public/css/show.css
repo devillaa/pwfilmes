@@ -1,0 +1,233 @@
+body {
+    background: #181818;
+    color: #d8d8d8;
+    font-family: "Inter", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+header {
+    background: #222a32;
+    color: #00e054;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 40px;
+    box-shadow: 0 2px 8px #0003;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    color: #00e054;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+header nav a {
+    color: #d8d8d8;
+    margin-left: 28px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+}
+
+header nav a:hover {
+    color: #00e054;
+}
+
+.filme-detalhes {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 30px;
+    margin-top: 40px; /* Margem para não ficar colado no header */
+}
+
+.filme-header {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+    background: #232a32;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 20px #0008;
+}
+
+.filme-poster {
+    text-align: center;
+}
+
+.filme-poster img {
+    width: 100%;
+    max-width: 280px;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px #0006;
+}
+
+.filme-info h1 {
+    color: #fff;
+    font-size: 2.5rem;
+    margin: 0 0 10px 0;
+    letter-spacing: 1px;
+}
+
+.filme-meta {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.ano {
+    background: #00e054;
+    color: #181818;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.categoria-badge {
+    background: #333;
+    color: #00e054;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+    border: 1px solid #00e054;
+}
+
+.sinopse-texto {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #d8d8d8;
+    margin-bottom: 30px;
+}
+
+.trailer-section {
+    background: #232a32;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 20px #0008;
+}
+
+.trailer-section h2 {
+    color: #fff;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.trailer-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.trailer-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+}
+
+.acoes-container {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* Botões com tamanhos mais parecidos */
+.btn-voltar,
+.btn-editar,
+.btn-excluir {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s;
+    min-width: 140px; /* Largura mínima igual para todos */
+    text-align: center;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-voltar {
+    background: #333;
+    color: #00e054;
+    border: 2px solid #00e054;
+}
+
+.btn-voltar:hover {
+    background: #00e054;
+    color: #181818;
+}
+
+.btn-editar {
+    background: #00e054;
+    color: #181818;
+}
+
+.btn-editar:hover {
+    background: #00b846;
+    color: #fff;
+}
+
+.btn-excluir {
+    background: #e00000;
+    color: #fff;
+}
+
+.btn-excluir:hover {
+    background: #a84c4c;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .filme-header {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .filme-info h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .filme-meta {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .acoes-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filme-detalhes {
+        padding: 0 20px;
+        margin-top: 20px;
+    }
+
+    .btn-voltar,
+    .btn-editar,
+    .btn-excluir {
+        width: 100%;
+        max-width: 200px;
+    }
+}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Filme;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -16,22 +17,20 @@ class FilmesController extends Controller
     // Listar todos os filmes
     public function index(Request $request)
     {
-
         $query = Filme::query();
 
         if ($request->filled('ano')) {
             $query->where('ano', $request->ano);
         }
-    
+
         if ($request->filled('categoria')) {
-            $query->where('categoria', $request->categoria);
+            $query->where('categoria_id', $request->categoria);
         }
-    
-    
-        $filmes = $query->get();
-    
-        $categorias = Filme::select('categoria')->distinct()->orderBy('categoria')->pluck('categoria');
-    
+
+        $filmes = $query->with('categoria')->get();
+
+        $categorias = Categoria::all();
+
         return view('filmes.index', compact('filmes', 'categorias'));
     }
 
@@ -44,7 +43,9 @@ class FilmesController extends Controller
     // Mostrar formulário de criação (admin)
     public function create()
     {
-        return view('filmes.create');
+        $categorias = Categoria::all();
+
+        return view('filmes.create', compact('categorias'));
     }
 
     // Salvar novo filme (admin)
